@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
 @SpringBootApplication
-@EnableBinding(LoanProcessor.class)
 public class LoanCheckApplication {
 
   public static final Logger log = LoggerFactory.getLogger(LoanCheckApplication.class);
