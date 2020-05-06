@@ -31,8 +31,8 @@ public class LoanChecker {
    * one for approved loans and one for declined loans
    */
   @Bean
-	public static Function<Flux<Loan>, Tuple2<Flux<Loan>, Flux<Loan>>> checkAndSortLoans() {
-		return flux -> {
+  public static Function<Flux<Loan>, Tuple2<Flux<Loan>, Flux<Loan>>> checkAndSortLoans() {
+    return flux -> {
 
       // This flux contains the stream of Loan applications as they come in to our service
       Flux<Loan> connectedFlux = flux.publish().autoConnect(2);
