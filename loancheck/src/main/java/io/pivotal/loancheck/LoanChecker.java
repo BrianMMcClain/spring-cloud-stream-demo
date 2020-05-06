@@ -39,8 +39,8 @@ public class LoanChecker {
       
       // These processors will be responsible for emitting approved/declined loans to
       // the two Flux objects that wil be returned
-			UnicastProcessor approved = UnicastProcessor.create();
-			UnicastProcessor declined = UnicastProcessor.create();
+      UnicastProcessor approved = UnicastProcessor.create();
+      UnicastProcessor declined = UnicastProcessor.create();
       
       // Loans for an amount more than MAX_AMOUNT get marked as declined, logged, and then sent to the declined processor
       Flux<Loan> declinedFlux = connectedFlux.filter(loan -> loan.getAmount() > MAX_AMOUNT).doOnNext(loan -> {
@@ -57,8 +57,8 @@ public class LoanChecker {
       });
 
       // Return two Loan Fluxes, one subscribed to the approved processor and one to the declined processor
-			return Tuples.of(Flux.from(approved).doOnSubscribe(x -> approvedFlux.subscribe()), Flux.from(declined).doOnSubscribe(x -> declinedFlux.subscribe()));
-		};
+      return Tuples.of(Flux.from(approved).doOnSubscribe(x -> approvedFlux.subscribe()), Flux.from(declined).doOnSubscribe(x -> declinedFlux.subscribe()));
+    };
   }
 
   private static final <T> Message<T> message(T val) {
